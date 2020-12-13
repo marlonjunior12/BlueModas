@@ -1,0 +1,35 @@
+﻿@model IEnumerable<BlueModasSite.Models.Product>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<table class="table">
+
+    @{ var aux = 1; }
+
+    @foreach (var item in Model)
+    {        
+        <tr>                            
+            <td style="vertical-align:middle">
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td style="vertical-align:middle">
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>
+            <td>
+                <img src=@Html.DisplayFor(modelItem => item.ImageBase64) height="20%" width="20%" />
+
+            </td>
+            <td style="vertical-align:middle">
+                <@Html.ActionLink("Adicionar ao Carrinho", "AddCart", new { id=item.Id }) />
+            </td>
+        </tr>
+    }
+
+</table>
