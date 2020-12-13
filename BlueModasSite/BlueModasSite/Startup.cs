@@ -29,6 +29,7 @@ namespace BlueModasSite
 
             services.AddHttpClient();
             services.AddTransient<ProductService>();
+            services.AddTransient<OrderService>();
             services.AddTransient<IHttpClientWrapper, HttpClientWrapper>();
 
             services.AddDistributedMemoryCache();
