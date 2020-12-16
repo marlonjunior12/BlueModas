@@ -11,6 +11,8 @@
     <tr>
         <th>Produto</th>
         <th>Imagem</th>
+        <th>Adicionar</th>
+        <th>Remover</th>
         <th>Quantidade</th>
         <th>Valor</th>
         <th>Total</th>
@@ -24,8 +26,14 @@
                 @Html.DisplayFor(modelItem => item.product.Description)
             </td>
             <td>
-                <img src=@Html.DisplayFor(modelItem => item.product.ImageBase64) height="20%" width="20%" />
+                <img src=@Html.DisplayFor(modelItem => item.product.ImageBase64) height="80px" width="80px" />
 
+            </td>
+            <td style="vertical-align:middle">
+                @Html.ActionLink(" + ", "AddItem", new { id = item.product.Id })
+            </td>
+            <td style="vertical-align:middle">
+                @Html.ActionLink(" - ", "RemoveItem", new { id = item.product.Id })
             </td>
             <td style="vertical-align:middle">
                 @Html.DisplayFor(modelItem => item.quantity)
@@ -47,7 +55,7 @@
 
 </table>
 
-@using (Html.BeginForm("SaveOrder", "Cart", FormMethod.Post))
+@using (Html.BeginForm("SaveOrder", "IdentifyClient", FormMethod.Post))
 {
     <input type="submit" value="Finalizar Compra" />
 }

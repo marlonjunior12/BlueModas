@@ -1,0 +1,45 @@
+﻿@model BlueModasSite.Models.Order
+
+@{
+    ViewData["Title"] = "Confirmação do Pedido";
+}
+
+@using (Html.BeginForm("SaveOrder", "IdentifyClient", FormMethod.Post))
+{
+    <hr4>Autenticação</hr4>
+    <hr />
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            <p class="control-label col-md-2">Nome: </p>
+            <div class="col-md-10">
+                <input type="text" name="Nome" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p class="col-md-2">E-mail: </p>
+            <div class="col-md-10">
+
+                <input type="text" name="E-mail" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p class="col-md-2">Telefone: </p>
+            <div class="col-md-10">
+
+                <input type="text" name="Telefone" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-2">
+                @using (Html.BeginForm("FinishOrder", "FinishOrder", FormMethod.Post))
+                {
+                    <input type="submit" value="Finalizar Compra" />
+                }
+            </div>
+        </div>
+    </div>
+}

@@ -19,18 +19,18 @@ namespace BlueModasSite.Controllers
             _orderService = orderService;
         }
 
-        public IActionResult SaveOrder(Order order)
-        {
-            var cart = HttpContext.Session.GetString("cart");
-            if (!string.IsNullOrWhiteSpace(cart))
-            {
-                order = JsonConvert.DeserializeObject<Order>(cart);
-            }
+        //public IActionResult SaveOrder(Order order)
+        //{
+        //    var cart = HttpContext.Session.GetString("cart");
+        //    if (!string.IsNullOrWhiteSpace(cart))
+        //    {
+        //        order = JsonConvert.DeserializeObject<Order>(cart);
+        //    }
 
-            _orderService.PostOrder(order);
+        //    _orderService.PostOrder(order);
 
-            return RedirectToAction("Index");
-        }
+        //    return RedirectToAction("Index");
+        //}
 
         public IActionResult Index()
         {
@@ -43,6 +43,53 @@ namespace BlueModasSite.Controllers
             }
 
             return View(order);
+        }
+
+        public IActionResult AddItem(int id)
+        {
+            Order order = new Order();
+
+            var cart = HttpContext.Session.GetString("cart");
+            if (!string.IsNullOrWhiteSpace(cart))
+            {
+                order = JsonConvert.DeserializeObject<Order>(cart);
+            }
+
+            var productOnCart = order.orderItens.Where(x => x.product.Id == id).FirstOrDefault();
+            if (productOnCart != null)
+            {
+                productOnCart.quantity++;
+            }
+
+            HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(order));
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult RemoveItem(int id)
+        {
+            Order order = new Order();
+
+            var cart = HttpContext.Session.GetString("cart");
+            if (!string.IsNullOrWhiteSpace(cart))
+            {
+                order = JsonConvert.DeserializeObject<Order>(cart);
+            }
+
+            var productOnCart = order.orderItens.Where(x => x.product.Id == id).FirstOrDefault();
+            if (productOnCart != null)
+            {
+                productOnCart.quantity--;
+
+                if (productOnCart.quantity == 0)
+                {
+                    order.orderItens.Remove(productOnCart);
+                }               
+            }
+
+            HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(order));
+
+            return RedirectToAction("Index");
         }
     }
 }
