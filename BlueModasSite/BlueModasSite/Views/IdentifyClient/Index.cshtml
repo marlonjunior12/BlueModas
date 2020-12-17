@@ -6,7 +6,7 @@
 
 @using (Html.BeginForm("SaveOrder", "IdentifyClient", FormMethod.Post))
 {
-    <hr4>Autenticação</hr4>
+    <hr4>Identificação</hr4>
     <hr />
     <div class="form-horizontal">
 
@@ -35,9 +35,9 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-2">
-                @using (Html.BeginForm("FinishOrder", "FinishOrder", FormMethod.Post))
+                @using (Html.BeginForm("Finish", "FinishOrder", FormMethod.Post))
                 {
-                    <input type="submit" value="Finalizar Compra" />
+                    <input type="submit" value="Concluir Compra" />
                 }
             </div>
         </div>

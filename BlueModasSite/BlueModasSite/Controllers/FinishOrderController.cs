@@ -19,7 +19,7 @@ namespace BlueModasSite.Controllers
             _orderService = orderService;
         }
 
-        public IActionResult FinishOrder(Order order)
+        public IActionResult Finish(Client client)
         {
             return RedirectToAction("Index");
         }

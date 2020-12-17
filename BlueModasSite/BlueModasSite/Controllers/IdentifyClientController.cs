@@ -21,6 +21,14 @@ namespace BlueModasSite.Controllers
 
         public IActionResult SaveOrder(Order order)
         {
+            //var cart = HttpContext.Session.GetString("cart");
+            //if (!string.IsNullOrWhiteSpace(cart))
+            //{
+            //    order = JsonConvert.DeserializeObject<Order>(cart);
+            //}
+
+            //_orderService.PostOrder(order);
+
             return RedirectToAction("Index");
         }
 
